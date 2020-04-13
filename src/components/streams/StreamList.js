@@ -27,13 +27,16 @@ class StreamList extends React.Component {
 	}
 
 	renderList() {
-		return this.props.streams.map((stream) => {
+		return this.props.streams.map(stream => {
 			return (
 				<div className="item" key={stream.id}>
 					{this.renderAdmin(stream)}
 					<i className="large middle aligned icon camera" />
 					<div className="content">
-						{stream.title}
+						<Link to={`/streams/${stream.id}`} className="header">
+							{stream.title}
+						</Link>
+
 						<div className="description">{stream.description}</div>
 					</div>
 				</div>
@@ -64,11 +67,11 @@ class StreamList extends React.Component {
 	}
 }
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
 	return {
 		streams: Object.values(state.streams),
 		currentUserId: state.auth.userId,
-		isSignedIn: state.auth.isSignedIn,
+		isSignedIn: state.auth.isSignedIn
 	};
 };
 
